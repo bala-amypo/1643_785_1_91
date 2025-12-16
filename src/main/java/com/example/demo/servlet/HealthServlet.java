@@ -1,6 +1,6 @@
 package com.example.demo.servlet;
 
-@we
+@WebSer
 public class HealthServlet extends HealthServlet {
 
 }
