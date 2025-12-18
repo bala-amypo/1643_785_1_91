@@ -8,14 +8,9 @@ public class UrgencyPolicy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Ling id;
-
     private String policyName;
-    private String key;
-    private String location;
-    private String createdBy;
-    @ManyToOne
-    private Category assignedCategory;
-    private String urgencyLevel;
+    private String keyword;
+    private String urgencyOverride;
     private LocalDateTime createdAt;
     
     @PrePersist
