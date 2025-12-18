@@ -1,38 +1,41 @@
 package com.example.demo.util;
 
-import java.util.*;
 import com.example.demo.model.*;
+import java.util.List;
 
-public class TicketCategorizationEngine{
-    public void categorization(
-        Ticket t,
-        List<Category> cats,
-        List<CategorizationRule> rules,
-        List<UrgencyPolicy> policies,
-        List<CategorizationLog> logs
-    ){
-        String text = (t.getTitle() + " " + t.getDescription()).toLowerCase();
-        rules.stream()
-                .sorted(Comparator.comparing(CategorizationRule::getPriority).reversed())
-                .forEach(rule -> {
-                    if(text.contains(rule,getKeyword().toLowerCase())){
-                        t.setAssignedCategory(rule.getCategory());
-                        t.setUrgencyLevel(rule.getCategory().getDefaultUrgency());
+public class TicketCategorizationEngine {
 
-                        CategorizationLog log = new CategorizationLog();
-                        log.setTicket(t);
-                        log.setAppliedRule(rule);
-                        log.setMatchedKeyword(rule.getKwyword());
-                        log.setAssignedCategory(rule.getCategory().gatCategoryName());
-                        log.setAssignedUrgency(t.getUrgencyLevel());
+    public void categorize(
+            Ticket ticket,
+            List<Category> categories,
+            List<CategorizationRule> rules,
+            List<UrgencyPolicy> policies,
+            List<CategorizationLog> logs) {
 
-                        logs.add(log);
-                    }
-                });
-        policies.forEach(p -> {
-            if(text.contains(p.getKeyword(). toLowerCase())){
-                t.setUrgencyLevel(p.getUrgencyOverride());
+        for (CategorizationRule rule : rules) {
+            if (ticket.getDescription().toLowerCase()
+                    .contains(rule.getKeyword().toLowerCase())) {
+
+                ticket.setAssignedCategory(rule.getCategory());
+                ticket.setUrgencyLevel(rule.getCategory().getDefaultUrgency());
+
+                CategorizationLog log = new CategorizationLog();
+                log.setTicket(ticket);
+                log.setAppliedRule(rule);
+                log.setMatchedKeyword(rule.getKeyword());
+                log.setAssignedCategory(rule.getCategory().getCategoryName());
+                log.setAssignedUrgency(rule.getCategory().getDefaultUrgency());
+
+                logs.add(log);
+                break;
             }
-        });
+        }
+
+        for (UrgencyPolicy policy : policies) {
+            if (ticket.getDescription().toLowerCase()
+                    .contains(policy.getKeyword().toLowerCase())) {
+                ticket.setUrgencyLevel(policy.getUrgencyOverride());
+            }
+        }
     }
 }
