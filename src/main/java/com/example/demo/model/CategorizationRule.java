@@ -9,28 +9,32 @@ public class CategorizationRule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private String keyword;
 
+    @Enumerated(EnumType.STRING)
+    private MatchType matchType;
+
     @ManyToOne
-    @JoinColumn(name = "category_id")
     private Category category;
-
-
-    public Long getId() {
-        return id;
-    }
 
     public String getKeyword() {
         return keyword;
+    }
+
+    public MatchType getMatchType() {
+        return matchType;
+    }
+
+    public Category getCategory() {
+        return category;
     }
 
     public void setKeyword(String keyword) {
         this.keyword = keyword;
     }
 
-    public Category getCategory() {
-        return category;
+    public void setMatchType(MatchType matchType) {
+        this.matchType = matchType;
     }
 
     public void setCategory(Category category) {

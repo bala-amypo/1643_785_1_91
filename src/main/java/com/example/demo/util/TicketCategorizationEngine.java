@@ -2,7 +2,9 @@ package com.example.demo.util;
 
 import com.example.demo.model.*;
 import org.springframework.stereotype.Component;
+
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Component
 public class TicketCategorizationEngine {
@@ -12,31 +14,43 @@ public class TicketCategorizationEngine {
             List<Category> categories,
             List<CategorizationRule> rules,
             List<UrgencyPolicy> policies,
-            List<CategorizationLog> logs) {
+            List<CategorizationLog> logs
+    ) {
+        String text = ticket.getDescription().toLowerCase();
 
         for (CategorizationRule rule : rules) {
-            if (ticket.getDescription().toLowerCase()
-                    .contains(rule.getKeyword().toLowerCase())) {
+            boolean matched = false;
 
-                ticket.setAssignedCategory(rule.getCategory());
-                ticket.setUrgencyLevel(rule.getCategory().getDefaultUrgency());
+            String keyword = rule.getKeyword().toLowerCase();
+
+            switch (rule.getMatchType()) {
+                case EXACT:
+                    matched = text.equalsIgnoreCase(keyword);
+                    break;
+
+                case CONTAINS:
+                    matched = text.contains(keyword);
+                    break;
+
+                case REGEX:
+                    matched = Pattern.matches(keyword, text);
+                    break;
+            }
+
+            if (matched) {
+                ticket.setCategory(rule.getCategory());
 
                 CategorizationLog log = new CategorizationLog();
                 log.setTicket(ticket);
-                log.setAppliedRule(rule);
-                log.setMatchedKeyword(rule.getKeyword());
-                log.setAssignedCategory(rule.getCategory().getCategoryName());
-                log.setAssignedUrgency(rule.getCategory().getDefaultUrgency());
-
+                log.setMatchedKeyword(keyword);
+                log.setAssignedCategory(rule.getCategory().getName());
                 logs.add(log);
-                break;
             }
         }
 
         for (UrgencyPolicy policy : policies) {
-            if (ticket.getDescription().toLowerCase()
-                    .contains(policy.getKeyword().toLowerCase())) {
-                ticket.setUrgencyLevel(policy.getUrgencyOverride());
+            if (text.contains(policy.getKeyword().toLowerCase())) {
+                ticket.setUrgency(policy.getUrgency());
             }
         }
     }

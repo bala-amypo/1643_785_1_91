@@ -1,11 +1,11 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.model.*;
 import com.example.demo.repository.*;
 import com.example.demo.service.CategorizationEngineService;
 import com.example.demo.util.TicketCategorizationEngine;
 import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,14 +20,15 @@ public class CategorizationEngineServiceImpl
     private final CategorizationLogRepository logRepo;
     private final TicketCategorizationEngine engine;
 
+    // ✅ ORDER IS CRITICAL
     public CategorizationEngineServiceImpl(
             TicketRepository ticketRepo,
             CategoryRepository categoryRepo,
             CategorizationRuleRepository ruleRepo,
             UrgencyPolicyRepository policyRepo,
             CategorizationLogRepository logRepo,
-            TicketCategorizationEngine engine) {
-
+            TicketCategorizationEngine engine
+    ) {
         this.ticketRepo = ticketRepo;
         this.categoryRepo = categoryRepo;
         this.ruleRepo = ruleRepo;
@@ -36,11 +37,10 @@ public class CategorizationEngineServiceImpl
         this.engine = engine;
     }
 
-    public Ticket categorizeTicket(Long ticketId) {
-
+    @Override
+    public Ticket categorize(Long ticketId) {
         Ticket ticket = ticketRepo.findById(ticketId)
-                .orElseThrow(() ->
-                        new ResourceNotFoundException("Ticket not found"));
+                .orElseThrow(() -> new RuntimeException("Ticket not found"));
 
         List<CategorizationLog> logs = new ArrayList<>();
 
@@ -56,15 +56,5 @@ public class CategorizationEngineServiceImpl
         logRepo.saveAll(logs);
 
         return ticket;
-    }
-
-    public List<CategorizationLog> getLogsForTicket(Long ticketId) {
-        return logRepo.findByTicket_Id(ticketId);
-    }
-
-    public CategorizationLog getLog(Long id) {
-        return logRepo.findById(id)
-                .orElseThrow(() ->
-                        new ResourceNotFoundException("Log not found"));
     }
 }
