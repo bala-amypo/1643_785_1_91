@@ -1,7 +1,6 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 public class UrgencyPolicy {
@@ -10,16 +9,14 @@ public class UrgencyPolicy {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String policyName;
     private String keyword;
-    private String urgencyOverride;
-    private LocalDateTime createdAt;
+    private String urgency;
 
-    @PrePersist
-    public void onCreate() {
-        createdAt = LocalDateTime.now();
+    public String getKeyword() {
+        return keyword;
     }
 
-    public String getKeyword() { return keyword; }
-    public String getUrgencyOverride() { return urgencyOverride; }
+    public String getUrgency() {
+        return urgency;
+    }
 }
