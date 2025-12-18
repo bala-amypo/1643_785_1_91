@@ -51,7 +51,7 @@ public class User{
     public getPassword(String password){
         this.password = password;
     }
-    public getCreatedAt(Loc){
-        return createdAt;
+    public getCreatedAt(LocalDateTime createdAt){
+        this.createdAt = createdAt;
     }
 }
