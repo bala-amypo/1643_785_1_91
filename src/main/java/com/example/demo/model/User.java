@@ -22,5 +22,36 @@ public class User{
     }
 
     //Getter Method
-    public get
+    public getId(){
+        return id;
+    }
+    public getFullName(){
+        return fullName;
+    }
+    public getEmail(){
+        return email;
+    }
+    public getPassword(){
+        return password;
+    }
+    public getCreatedAt(){
+        return createdAt;
+    }
+
+    //Setter Method
+    public getId(Long id){
+        this.id = id;
+    }
+    public getFullName(String fullName){
+        this.fullName = fullName;
+    }
+    public getEmail(String email){
+        this.email = email;
+    }
+    public getPassword(String password){
+        this.password = password;
+    }
+    public getCreatedAt(Loc){
+        return createdAt;
+    }
 }
