@@ -1,3 +1,5 @@
 public interface TicketService{
-    Ticket create
+    Ticket createTicket(Ticket ticket);
+    Ticket getTicket(Long id);
+    List<Ticket> getAllTickets();
 }
