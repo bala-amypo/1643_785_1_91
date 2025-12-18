@@ -8,5 +8,19 @@ import java.time.LocalDateTime;
 public class User{
     
     @Id
-    @GeneratedValue()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Ling id;
+    private String fullName;
+    @Column(unique = true)
+    private String email;
+    private String password;
+    private String role = "USER";
+    private LocalDateTime createdAt;
+    @PrePersist
+    void onCreate(){
+        createAt = LocalDateTime.now();
+    }
+
+    //Getter Method
+    public get
 }
