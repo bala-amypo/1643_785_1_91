@@ -15,7 +15,16 @@ public class TicketCategorizationEngine{
         rules.stream()
                 .sorted(Comparator.comparing(CategorizationRule::getPriority).reversed())
                 .forEach(rule -> {
-                    if(text.c)
+                    if(text.contains(rule,getKeyword().toLowerCase())){
+                        t.setAssignedCategory(rule.getCategory());
+                        t.setUrgencyLevel(rule.getCategory().getDefaultUrgency());
+
+                        CategorizationLog log = new CategorizationLog();
+                        log.setTicket(t);
+                        log.setAppliedRule(rule);
+                        log.setMatchedKeyword(rule.getKwyword());
+                        log.setAssi
+                    }
                 })
     }
 }
