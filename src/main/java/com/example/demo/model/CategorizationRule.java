@@ -9,17 +9,31 @@ public class CategorizationRule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String keyword;
 
     @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;
 
-    public void setCategory(Category category) {
-        this.category = category;
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
     }
 
     public Category getCategory() {
         return category;
     }
 
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 }
