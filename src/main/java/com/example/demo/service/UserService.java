@@ -1,6 +1,9 @@
+package com.example.demo.service;
 
-public interface UserService{
-    User register(User, user);
+import com.example.demo.model.User;
+
+public interface UserService {
+    User register(User user);
     User getUser(Long id);
     User findByEmail(String email);
 }
