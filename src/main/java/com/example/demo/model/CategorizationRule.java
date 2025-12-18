@@ -1,22 +1,28 @@
 package com.example.demo.model;
 
-import jakarta.persistance.*;
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 public class CategorizationRule {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Ling id;
+    private Long id;
+
     @ManyToOne
     private Category category;
+
     private String keyword;
     private String matchType;
     private Integer priority;
     private LocalDateTime createdAt;
-    
+
     @PrePersist
-    void OnCreate(){
+    public void onCreate() {
         createdAt = LocalDateTime.now();
     }
+
+    public Category getCategory() { return category; }
+    public String getKeyword() { return keyword; }
 }
