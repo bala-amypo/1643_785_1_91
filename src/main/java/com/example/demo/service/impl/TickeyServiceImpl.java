@@ -9,6 +9,9 @@ public class TicketServiceImpl implements TicketService{
     }
     public Ticket getTicket(Long id){
         return repo.findById(id)
-                
+                .orElseThrow(() -> new ResourceNotFoundException("Ticket not found"));
+    }
+    public List<ticket> getAllTickets(){
+        return repo.findAll();
     }
 }
