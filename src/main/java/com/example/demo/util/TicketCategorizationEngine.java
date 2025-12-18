@@ -23,8 +23,16 @@ public class TicketCategorizationEngine{
                         log.setTicket(t);
                         log.setAppliedRule(rule);
                         log.setMatchedKeyword(rule.getKwyword());
-                        log.setAssi
+                        log.setAssignedCategory(rule.getCategory().gatCategoryName());
+                        log.setAssignedUrgency(t.getUrgencyLevel());
+
+                        logs.add(log);
                     }
-                })
+                });
+        policies.forEach(p -> {
+            if(text.contains(p.getKeyword(). toLowerCase())){
+                t.setUrgencyLevel(p.getUrgencyOverride());
+            }
+        });
     }
 }
