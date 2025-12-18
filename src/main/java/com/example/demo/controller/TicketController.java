@@ -15,5 +15,8 @@ public class TicketController{
     public List<Ticket> list(){
         return service.getAllTickets();
     }
-    @
+    @GetMapping("/{id}")
+    public Ticket get(@PathVariable Long id){
+        return service.getTicket(id);
+    }
 }
