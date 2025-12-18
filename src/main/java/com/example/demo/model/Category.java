@@ -11,8 +11,11 @@ public class Category {
     private Ling id;
     @Column(unique = true)
     private String categoryName;
-    private String discription;
-    private String default
+    private String description;
+    private String defaultUrgency;
     private LocalDateTime createdAt;
     @PrePersist
+    voidOnCreate(){
+        createdAt = LocalDateTime.now();
+    }
 }
