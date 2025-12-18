@@ -15,7 +15,7 @@ public class Category {
     private String defaultUrgency;
     private LocalDateTime createdAt;
     @PrePersist
-    voidOnCreate(){
+    void OnCreate(){
         createdAt = LocalDateTime.now();
     }
 }

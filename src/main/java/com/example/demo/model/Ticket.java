@@ -14,10 +14,11 @@ public class Ticket {
     private String createdBy;
     @ManyToOne
     private Category assignedCategory;
-    private String u
+    private String urgencyLevel;
+    private LocalDateTime createdAt;
     
     @PrePersist
-    voidOnCreate(){
+    void OnCreate(){
         createdAt = LocalDateTime.now();
     }
 }
