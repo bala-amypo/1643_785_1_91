@@ -1,7 +1,6 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import jakarta.persistence.PrePersist;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -52,6 +51,7 @@ public class Ticket {
         this.createdAt = LocalDateTime.now();
     }
 
+    // Getters and setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -60,6 +60,12 @@ public class Ticket {
 
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
+
+    public String getLocation() { return location; }
+    public void setLocation(String location) { this.location = location; }
+
+    public User getCreatedByUser() { return createdByUser; }
+    public void setCreatedByUser(User createdByUser) { this.createdByUser = createdByUser; }
 
     public Category getAssignedCategory() { return assignedCategory; }
     public void setAssignedCategory(Category assignedCategory) { this.assignedCategory = assignedCategory; }
@@ -72,4 +78,7 @@ public class Ticket {
 
     public LocalDateTime getCreatedAt() { return createdAt; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+
+    public List<CategorizationLog> getLogs() { return logs; }
+    public void setLogs(List<CategorizationLog> logs) { this.logs = logs; }
 }
