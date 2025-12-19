@@ -48,11 +48,8 @@ public class Ticket {
     }
 
     @PrePersist
-    public void onCreate() {
+    public void prePersist() {
         this.createdAt = LocalDateTime.now();
-        if (this.urgencyLevel == null) {
-            this.urgencyLevel = "LOW";
-        }
     }
 
     public Long getId() { return id; }

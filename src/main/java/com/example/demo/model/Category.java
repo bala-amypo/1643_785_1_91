@@ -28,7 +28,11 @@ public class Category {
     private List<Ticket> tickets;
 
     @OneToMany(mappedBy = "category")
-    private List<CategorizationRule> rules;
+    private List<UrgencyPolicy> urgencyPolicies;
+
+    public List<UrgencyPolicy> getUrgencyPolicies() {
+        return urgencyPolicies;
+    }
 
     public Category() {}
 
