@@ -34,5 +34,10 @@ public class UrgencyPolicy {
         this.createdAt = LocalDateTime.now();
     }
 
-    // getters and setters
+
+    public String getKeyword() { return keyword; }
+    public void setKeyword(String keyword) { this.keyword = keyword; }
+
+    public int getUrgencyOverride() { return urgencyOverride; }
+    public void setUrgencyOverride(int urgencyOverride) { this.urgencyOverride = urgencyOverride; }
 }

@@ -52,5 +52,24 @@ public class CategorizationLog {
         this.loggedAt = LocalDateTime.now();
     }
 
-    // getters and setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public Ticket getTicket() { return ticket; }
+    public void setTicket(Ticket ticket) { this.ticket = ticket; }
+
+    public CategorizationRule getMatchedRule() { return matchedRule; }
+    public void setMatchedRule(CategorizationRule matchedRule) { this.matchedRule = matchedRule; }
+
+    public String getMatchedKeyword() { return matchedKeyword; }
+    public void setMatchedKeyword(String matchedKeyword) { this.matchedKeyword = matchedKeyword; }
+
+    public Category getAssignedCategory() { return assignedCategory; }
+    public void setAssignedCategory(Category assignedCategory) { this.assignedCategory = assignedCategory; }
+
+    public int getUrgencyLevel() { return urgencyLevel; }
+    public void setUrgencyLevel(int urgencyLevel) { this.urgencyLevel = urgencyLevel; }
+
+    public LocalDateTime getTimestamp() { return timestamp; }
+    public void setTimestamp(LocalDateTime timestamp) { this.timestamp = timestamp; }
 }
