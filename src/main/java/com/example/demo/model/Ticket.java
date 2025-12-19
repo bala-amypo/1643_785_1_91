@@ -29,6 +29,8 @@ public class Ticket {
     @Column(nullable = false)
     private String urgencyLevel;
 
+    private String urgencyOverride;
+
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
@@ -50,18 +52,31 @@ public class Ticket {
         }
     }
 
+    // Getters and setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
 
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
 
+    public String getLocation() { return location; }
+    public void setLocation(String location) { this.location = location; }
+
+    public String getCreatedBy() { return createdBy; }
+    public void setCreatedBy(String createdBy) { this.createdBy = createdBy; }
+
     public Category getAssignedCategory() { return assignedCategory; }
     public void setAssignedCategory(Category assignedCategory) { this.assignedCategory = assignedCategory; }
 
-    public int getUrgencyLevel() { return urgencyLevel; }
-    public void setUrgencyLevel(int urgencyLevel) { this.urgencyLevel = urgencyLevel; }
+    public String getUrgencyLevel() { return urgencyLevel; }
+    public void setUrgencyLevel(String urgencyLevel) { this.urgencyLevel = urgencyLevel; }
 
-    public Integer getUrgencyOverride() { return urgencyOverride; }
-    public void setUrgencyOverride(Integer urgencyOverride) { this.urgencyOverride = urgencyOverride; }
+    public String getUrgencyOverride() { return urgencyOverride; }
+    public void setUrgencyOverride(String urgencyOverride) { this.urgencyOverride = urgencyOverride; }
+
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 }

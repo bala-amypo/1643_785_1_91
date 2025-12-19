@@ -22,8 +22,9 @@ public class CategorizationLog {
     @Column(nullable = false)
     private String matchedKeyword;
 
-    @Column(nullable = false)
-    private String assignedCategory;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category assignedCategory;
 
     @Column(nullable = false)
     private String assignedUrgency;
@@ -37,7 +38,7 @@ public class CategorizationLog {
             Ticket ticket,
             CategorizationRule appliedRule,
             String matchedKeyword,
-            String assignedCategory,
+            Category assignedCategory,
             String assignedUrgency
     ) {
         this.ticket = ticket;
@@ -58,8 +59,8 @@ public class CategorizationLog {
     public Ticket getTicket() { return ticket; }
     public void setTicket(Ticket ticket) { this.ticket = ticket; }
 
-    public CategorizationRule getMatchedRule() { return matchedRule; }
-    public void setMatchedRule(CategorizationRule matchedRule) { this.matchedRule = matchedRule; }
+    public CategorizationRule getAppliedRule() { return appliedRule; }
+    public void setAppliedRule(CategorizationRule appliedRule) { this.appliedRule = appliedRule; }
 
     public String getMatchedKeyword() { return matchedKeyword; }
     public void setMatchedKeyword(String matchedKeyword) { this.matchedKeyword = matchedKeyword; }
@@ -67,9 +68,9 @@ public class CategorizationLog {
     public Category getAssignedCategory() { return assignedCategory; }
     public void setAssignedCategory(Category assignedCategory) { this.assignedCategory = assignedCategory; }
 
-    public int getUrgencyLevel() { return urgencyLevel; }
-    public void setUrgencyLevel(int urgencyLevel) { this.urgencyLevel = urgencyLevel; }
+    public String getAssignedUrgency() { return assignedUrgency; }
+    public void setAssignedUrgency(String assignedUrgency) { this.assignedUrgency = assignedUrgency; }
 
-    public LocalDateTime getTimestamp() { return timestamp; }
-    public void setTimestamp(LocalDateTime timestamp) { this.timestamp = timestamp; }
+    public LocalDateTime getLoggedAt() { return loggedAt; }
+    public void setLoggedAt(LocalDateTime loggedAt) { this.loggedAt = loggedAt; }
 }

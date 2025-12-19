@@ -41,9 +41,24 @@ public class Category {
         this.createdAt = LocalDateTime.now();
     }
 
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
     public String getCategoryName() { return categoryName; }
     public void setCategoryName(String categoryName) { this.categoryName = categoryName; }
 
-    public int getDefaultUrgency() { return defaultUrgency; }
-    public void setDefaultUrgency(int defaultUrgency) { this.defaultUrgency = defaultUrgency; }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
+
+    public String getDefaultUrgency() { return defaultUrgency; }
+    public void setDefaultUrgency(String defaultUrgency) { this.defaultUrgency = defaultUrgency; }
+
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+
+    public List<Ticket> getTickets() { return tickets; }
+    public void setTickets(List<Ticket> tickets) { this.tickets = tickets; }
+
+    public List<CategorizationRule> getRules() { return rules; }
+    public void setRules(List<CategorizationRule> rules) { this.rules = rules; }
 }
