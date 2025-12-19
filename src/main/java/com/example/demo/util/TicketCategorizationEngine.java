@@ -23,8 +23,8 @@ public class TicketCategorizationEngine {
 
         rules.sort(Comparator.comparingInt(CategorizationRule::getPriority).reversed());
 
+        // Apply rules
         for (CategorizationRule rule : rules) {
-
             String keyword = rule.getKeyword().toLowerCase();
             boolean matched = matches(rule.getMatchType(), keyword, text);
 
@@ -38,29 +38,27 @@ public class TicketCategorizationEngine {
                         ticket,
                         rule,
                         rule.getKeyword(),
-                        category.getCategoryName(),
+                        category,
                         ticket.getUrgencyLevel()
                 );
 
                 logRepository.save(log);
-                break; // highest priority rule wins
+                break; // highest priority wins
             }
         }
 
+        // Apply urgency policies
         for (UrgencyPolicy policy : policies) {
-
             if (text.contains(policy.getKeyword().toLowerCase())) {
-
+                ticket.setUrgencyOverride(policy.getUrgencyOverride());
                 ticket.setUrgencyLevel(policy.getUrgencyOverride());
 
                 CategorizationLog log = new CategorizationLog(
                         ticket,
                         null,
                         policy.getKeyword(),
-                        ticket.getAssignedCategory() != null
-                                ? ticket.getAssignedCategory().getCategoryName()
-                                : "UNASSIGNED",
-                        ticket.getUrgencyOverride()
+                        ticket.getAssignedCategory(),
+                        policy.getUrgencyOverride()
                 );
 
                 logRepository.save(log);
@@ -69,19 +67,13 @@ public class TicketCategorizationEngine {
     }
 
     private boolean matches(String matchType, String keyword, String text) {
-
         switch (matchType.toUpperCase()) {
             case "EXACT":
                 return text.equals(keyword);
-
             case "CONTAINS":
                 return text.contains(keyword);
-
             case "REGEX":
-                return Pattern.compile(keyword, Pattern.CASE_INSENSITIVE)
-                        .matcher(text)
-                        .find();
-
+                return Pattern.compile(keyword, Pattern.CASE_INSENSITIVE).matcher(text).find();
             default:
                 return false;
         }

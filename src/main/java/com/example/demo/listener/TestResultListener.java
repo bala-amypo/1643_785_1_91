@@ -1,45 +1,28 @@
 package com.example.demo.listener;
 
-import org.testng.ITestContext;
-import org.testng.ITestListener;
-import org.testng.ITestResult;
-import org.springframework.stereotype.Component;
+import org.junit.platform.launcher.TestExecutionListener;
+import org.junit.platform.launcher.TestIdentifier;
+import org.junit.platform.launcher.TestPlan;
 
-@Component
-public class TestResultListener implements ITestListener {
+public class TestResultListener implements TestExecutionListener {
 
     @Override
-    public void onStart(ITestContext context) {
-        // Test suite started
+    public void testPlanExecutionStarted(TestPlan testPlan) {
+        System.out.println("Test plan started");
     }
 
     @Override
-    public void onFinish(ITestContext context) {
-        // Test suite finished
+    public void testPlanExecutionFinished(TestPlan testPlan) {
+        System.out.println("Test plan finished");
     }
 
     @Override
-    public void onTestStart(ITestResult result) {
-        // Test started
+    public void executionStarted(TestIdentifier testIdentifier) {
+        System.out.println("Started: " + testIdentifier.getDisplayName());
     }
 
     @Override
-    public void onTestSuccess(ITestResult result) {
-        // Test passed
-    }
-
-    @Override
-    public void onTestFailure(ITestResult result) {
-        // Test failed
-    }
-
-    @Override
-    public void onTestSkipped(ITestResult result) {
-        // Test skipped
-    }
-
-    @Override
-    public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-        // Partial success
+    public void executionFinished(TestIdentifier testIdentifier, org.junit.platform.engine.TestExecutionResult testExecutionResult) {
+        System.out.println("Finished: " + testIdentifier.getDisplayName() + " - " + testExecutionResult.getStatus());
     }
 }

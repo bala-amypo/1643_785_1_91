@@ -15,7 +15,7 @@ public class CategorizationLog {
     @JoinColumn(name = "ticket_id")
     private Ticket ticket;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     @JoinColumn(name = "rule_id")
     private CategorizationRule appliedRule;
 
