@@ -23,6 +23,14 @@ public class UrgencyPolicy {
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    public Category getCategory() {
+        return category;
+    }
+    
     public UrgencyPolicy() {}
 
     public UrgencyPolicy(String keyword, String urgencyOverride) {
