@@ -20,7 +20,9 @@ public class Ticket {
 
     private String location;
 
-    private String createdBy;
+    @ManyToOne
+    @JoinColumn(name = "created_by_user_id")
+    private User createdByUser;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
