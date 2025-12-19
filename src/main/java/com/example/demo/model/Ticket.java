@@ -52,7 +52,6 @@ public class Ticket {
         }
     }
 
-    // Getters and setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -61,12 +60,6 @@ public class Ticket {
 
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
-
-    public String getLocation() { return location; }
-    public void setLocation(String location) { this.location = location; }
-
-    public String getCreatedBy() { return createdBy; }
-    public void setCreatedBy(String createdBy) { this.createdBy = createdBy; }
 
     public Category getAssignedCategory() { return assignedCategory; }
     public void setAssignedCategory(Category assignedCategory) { this.assignedCategory = assignedCategory; }

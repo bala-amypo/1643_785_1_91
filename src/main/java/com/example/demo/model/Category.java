@@ -47,18 +47,9 @@ public class Category {
     public String getCategoryName() { return categoryName; }
     public void setCategoryName(String categoryName) { this.categoryName = categoryName; }
 
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
-
     public String getDefaultUrgency() { return defaultUrgency; }
     public void setDefaultUrgency(String defaultUrgency) { this.defaultUrgency = defaultUrgency; }
 
     public LocalDateTime getCreatedAt() { return createdAt; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
-
-    public List<Ticket> getTickets() { return tickets; }
-    public void setTickets(List<Ticket> tickets) { this.tickets = tickets; }
-
-    public List<CategorizationRule> getRules() { return rules; }
-    public void setRules(List<CategorizationRule> rules) { this.rules = rules; }
 }
