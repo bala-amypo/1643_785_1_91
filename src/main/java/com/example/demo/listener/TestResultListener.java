@@ -1,28 +1,28 @@
 package com.example.demo.listener;
 
-import org.junit.platform.launcher.TestExecutionListener;
-import org.junit.platform.launcher.TestIdentifier;
-import org.junit.platform.launcher.TestPlan;
+import org.junit.jupiter.api.extension.TestWatcher;
+import org.junit.jupiter.api.extension.ExtensionContext;
+import java.util.Optional;
 
-public class TestResultListener implements TestExecutionListener {
+public class TestResultListener implements TestWatcher {
 
     @Override
-    public void testPlanExecutionStarted(TestPlan testPlan) {
-        System.out.println("Test plan started");
+    public void testSuccessful(ExtensionContext context) {
+        System.out.println("PASSED: " + context.getDisplayName());
     }
 
     @Override
-    public void testPlanExecutionFinished(TestPlan testPlan) {
-        System.out.println("Test plan finished");
+    public void testFailed(ExtensionContext context, Throwable cause) {
+        System.out.println("FAILED: " + context.getDisplayName() + " - " + cause.getMessage());
     }
 
     @Override
-    public void executionStarted(TestIdentifier testIdentifier) {
-        System.out.println("Started: " + testIdentifier.getDisplayName());
+    public void testDisabled(ExtensionContext context, Optional<String> reason) {
+        System.out.println("DISABLED: " + context.getDisplayName() + " - " + reason.orElse("No reason"));
     }
 
     @Override
-    public void executionFinished(TestIdentifier testIdentifier, org.junit.platform.engine.TestExecutionResult testExecutionResult) {
-        System.out.println("Finished: " + testIdentifier.getDisplayName() + " - " + testExecutionResult.getStatus());
+    public void testAborted(ExtensionContext context, Throwable cause) {
+        System.out.println("ABORTED: " + context.getDisplayName() + " - " + cause.getMessage());
     }
 }
