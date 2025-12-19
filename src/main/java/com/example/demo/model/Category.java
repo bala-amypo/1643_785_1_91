@@ -41,5 +41,9 @@ public class Category {
         this.createdAt = LocalDateTime.now();
     }
 
-    // getters and setters
+    public String getCategoryName() { return categoryName; }
+    public void setCategoryName(String categoryName) { this.categoryName = categoryName; }
+
+    public int getDefaultUrgency() { return defaultUrgency; }
+    public void setDefaultUrgency(int defaultUrgency) { this.defaultUrgency = defaultUrgency; }
 }
