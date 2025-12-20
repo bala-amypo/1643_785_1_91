@@ -41,6 +41,7 @@ public class SecurityConfig {
             "/v3/api-docs/swagger-config"
         ).permitAll()
         .requestMatchers("/api/auth/**").permitAll()
+        .requestMatchers(HttpMethod.GET, "/api/categories/**").permitAll()
         .anyRequest().authenticated()
         );
         return http.build();
