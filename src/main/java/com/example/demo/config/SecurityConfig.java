@@ -28,33 +28,17 @@ public class SecurityConfig {
 
         http
             .csrf(csrf -> csrf.disable())
-            .sessionManagement(session ->
-                session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            )
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(
-                        "/auth/**",
                         "/swagger-ui/**",
                         "/v3/api-docs/**",
-                        "/health"
+                        "/api/**"
                 ).permitAll()
-                .requestMatchers("/api/**").authenticated()
-                .anyRequest().denyAll()
-            );
+                .anyRequest().authenticated()
+            )
 
-        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+            .httpBasic(Customizer.withDefaults());
 
         return http.build();
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public AuthenticationManager authenticationManager(
-            AuthenticationConfiguration configuration) throws Exception {
-        return configuration.getAuthenticationManager();
     }
 }
