@@ -15,17 +15,17 @@ import org.springframework.http.HttpMethod;
 @Configuration
 public class SecurityConfig {
 
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
+    // @Bean
+    // public PasswordEncoder passwordEncoder(){
+    //     return new BCryptPasswordEncoder();
+    // }
 
-    @Bean
-    public AuthenticationManager authenticationManager(
-        AuthenticationConfiguration authenticationConfiguration
-    )throws Exception{
-        return authenticationConfiguration.getAuthenticationManager();
-    }
+    // @Bean
+    // public AuthenticationManager authenticationManager(
+    //     AuthenticationConfiguration authenticationConfiguration
+    // )throws Exception{
+    //     return authenticationConfiguration.getAuthenticationManager();
+    // }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
@@ -40,10 +40,10 @@ public class SecurityConfig {
             "/swagger-ui/index.html",
             "/v3/api-docs/swagger-config"
         ).permitAll()
-        .requestMatchers("/api/auth/**").permitAll()
-        .requestMatchers(HttpMethod.GET, "/api/categories/**").permitAll()
+        // .requestMatchers("/api/auth/**").permitAll()
+        // .requestMatchers(HttpMethod.GET, "/api/categories/**").permitAll()
         .anyRequest().authenticated()
-        );
+        ).addFilterBefore(jwtFilter, UsernamePasswordAuthenticat)
         return http.build();
     }
 }
