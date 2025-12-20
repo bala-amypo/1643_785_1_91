@@ -18,7 +18,7 @@ public class UrgencyPolicyController {
         this.policyService = policyService;
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("permitAll()")
     @PostMapping
     public ResponseEntity<UrgencyPolicy> create(@RequestBody UrgencyPolicy policy) {
         return ResponseEntity.ok(policyService.createPolicy(policy));

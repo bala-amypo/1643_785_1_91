@@ -18,7 +18,7 @@ public class CategorizationRuleController {
         this.ruleService = ruleService;
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("permitAll()")
     @PostMapping("/{categoryId}")
     public ResponseEntity<CategorizationRule> create(
             @PathVariable Long categoryId,
