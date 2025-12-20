@@ -43,7 +43,7 @@ public class SecurityConfig {
         // .requestMatchers("/api/auth/**").permitAll()
         // .requestMatchers(HttpMethod.GET, "/api/categories/**").permitAll()
         .anyRequest().authenticated()
-        ).addFilterBefore(jwtFilter, UsernamePasswordAuthenticat)
+        ).addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 }
