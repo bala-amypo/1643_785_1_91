@@ -23,7 +23,6 @@ public class TicketCategorizationEngine {
 
         rules.sort(Comparator.comparingInt(CategorizationRule::getPriority).reversed());
 
-        // Apply rules
         for (CategorizationRule rule : rules) {
             String keyword = rule.getKeyword().toLowerCase();
             boolean matched = matches(rule.getMatchType(), keyword, text);
@@ -43,11 +42,10 @@ public class TicketCategorizationEngine {
                 );
 
                 logRepository.save(log);
-                break; // highest priority wins
+                break;
             }
         }
 
-        // Apply urgency policies
         for (UrgencyPolicy policy : policies) {
             if (text.contains(policy.getKeyword().toLowerCase())) {
                 ticket.setUrgencyOverride(policy.getUrgencyOverride());
