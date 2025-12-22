@@ -18,7 +18,7 @@ public class JwtUtil {
 
     public JwtUtil() {
         this.secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
-        this.validityInMs = 1000 * 60 * 60; // 1 hour
+        this.validityInMs = 1000 * 60 * 60;
     }
 
     public String generateToken(Map<String, Object> claims, String subject) {
