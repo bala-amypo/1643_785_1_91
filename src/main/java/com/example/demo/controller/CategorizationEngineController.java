@@ -25,13 +25,8 @@ public class CategorizationEngineController {
 
     @GetMapping("/logs/{ticketId}")
     public ResponseEntity<List<CategorizationLog>> getLogs(@PathVariable Long ticketId) {
-        return ResponseEntity.ok(
-                engineService
-                        .getLogsForTicket(ticketId)
-                        .findByTicket_Id(ticketId)
-        );
+        return ResponseEntity.ok(engineService.getLogsForTicket(ticketId));
     }
-
 
     @GetMapping("/log/{id}")
     public ResponseEntity<CategorizationLog> getLog(@PathVariable Long id) {

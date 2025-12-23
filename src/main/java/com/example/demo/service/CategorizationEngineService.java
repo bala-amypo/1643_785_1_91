@@ -6,10 +6,8 @@ import java.util.List;
 import com.example.demo.repository.CategorizationLogRepository;
 
 public interface CategorizationEngineService {
-
     Ticket categorizeTicket(Long ticketId);
-
-    CategorizationLogRepository getLogsForTicket(Long ticketId);
-
+    List<CategorizationLog> getLogsForTicket(Long ticketId);
     CategorizationLog getLog(Long id);
 }
+

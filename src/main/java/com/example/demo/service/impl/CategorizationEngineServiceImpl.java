@@ -50,9 +50,10 @@ public class CategorizationEngineServiceImpl implements CategorizationEngineServ
     }
 
     @Override
-    public CategorizationLogRepository getLogsForTicket(Long ticketId) {
-        return logRepository;
-}
+        public List<CategorizationLog> getLogsForTicket(Long ticketId) {
+            return logRepository.findByTicket_Id(ticketId);
+        }
+
 
 
     @Override
