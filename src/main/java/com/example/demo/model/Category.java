@@ -42,7 +42,7 @@ public class Category {
     }
 
     @PrePersist
-    public void perPersist() {
+    public void prePersist() {
         this.createdAt = LocalDateTime.now();
     }
 
