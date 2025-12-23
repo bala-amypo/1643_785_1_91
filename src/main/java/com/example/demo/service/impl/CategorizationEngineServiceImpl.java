@@ -56,6 +56,11 @@ public class CategorizationEngineServiceImpl implements CategorizationEngineServ
     }
 
     @Override
+    public CategorizationLogRepository getCategorizationLogRepository() {
+        return logRepository;
+    }
+
+    @Override
     public CategorizationLog getLog(Long id) {
         return logRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Log not found"));
