@@ -3,6 +3,8 @@ package com.example.demo.model;
 import jakarta.persistence.*;
 import jakarta.persistence.PrePersist;
 import java.time.LocalDateTime;
+import java.util.Set;
+import java.util.HashSet;
 import java.util.List;
 
 @Entity
