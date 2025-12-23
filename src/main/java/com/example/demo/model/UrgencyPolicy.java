@@ -27,7 +27,7 @@ public class UrgencyPolicy {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    public Category getCategory() {
+    public Category getCategories() {
         return category;
     }
     
