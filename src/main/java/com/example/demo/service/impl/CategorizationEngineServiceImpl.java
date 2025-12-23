@@ -54,8 +54,6 @@ public class CategorizationEngineServiceImpl implements CategorizationEngineServ
             return logRepository.findByTicket_Id(ticketId);
         }
 
-
-
     @Override
     public CategorizationLog getLog(Long id) {
         return logRepository.findById(id)
