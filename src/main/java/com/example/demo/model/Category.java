@@ -32,9 +32,14 @@ public class Category {
     @ManyToMany(mappedBy = "categories")
     private Set<UrgencyPolicy> urgencyPolicies = new HashSet<>();
 
-    public List<UrgencyPolicy> getUrgencyPolicies() {
+    public Set<UrgencyPolicy> getUrgencyPolicies() {
         return urgencyPolicies;
     }
+
+    public void setUrgencyPolicies(Set<UrgencyPolicy> urgencyPolicies) {
+        this.urgencyPolicies = urgencyPolicies;
+    }
+
 
     public Category() {}
 
