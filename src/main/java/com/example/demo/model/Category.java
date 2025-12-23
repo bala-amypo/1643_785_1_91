@@ -27,8 +27,8 @@ public class Category {
     @OneToMany(mappedBy = "assignedCategory")
     private List<Ticket> tickets;
 
-    @OneToMany(mappedBy = "category")
-    private List<UrgencyPolicy> urgencyPolicies;
+    @ManyToMany(mappedBy = "categories")
+    private Set<UrgencyPolicy> urgencyPolicies = new HashSet<>();
 
     public List<UrgencyPolicy> getUrgencyPolicies() {
         return urgencyPolicies;

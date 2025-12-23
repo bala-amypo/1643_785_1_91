@@ -1,8 +1,9 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import jakarta.persistence.PrePersist;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "urgency_policies")
@@ -23,14 +24,14 @@ public class UrgencyPolicy {
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
+    @ManyToMany
+    @JoinTable(
+        name = "urgency_policy_categories",
+        joinColumns = @JoinColumn(name = "urgency_policy_id"),
+        inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private Set<Category> categories = new HashSet<>();
 
-    public Category getCategories() {
-        return category;
-    }
-    
     public UrgencyPolicy() {}
 
     public UrgencyPolicy(String keyword, String urgencyOverride) {
@@ -42,6 +43,7 @@ public class UrgencyPolicy {
     public void prePersist() {
         this.createdAt = LocalDateTime.now();
     }
+
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -56,5 +58,12 @@ public class UrgencyPolicy {
     public void setUrgencyOverride(String urgencyOverride) { this.urgencyOverride = urgencyOverride; }
 
     public LocalDateTime getCreatedAt() { return createdAt; }
-    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
+    }
 }
