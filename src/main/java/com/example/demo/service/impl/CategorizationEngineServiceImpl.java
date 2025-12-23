@@ -2,6 +2,7 @@ package com.example.demo.service.impl;
 
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.model.*;
+import java.util.List;
 import com.example.demo.repository.*;
 import com.example.demo.service.CategorizationEngineService;
 import com.example.demo.util.TicketCategorizationEngine;
@@ -47,7 +48,6 @@ public class CategorizationEngineServiceImpl implements CategorizationEngineServ
         return ticketRepository.save(ticket);
     }
 
-    @Override
     public CategorizationLogRepository getCategorizationLogRepository() {
         return logRepository;
     }
