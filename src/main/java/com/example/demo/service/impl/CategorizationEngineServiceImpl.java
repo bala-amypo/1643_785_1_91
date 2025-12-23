@@ -37,15 +37,13 @@ public class CategorizationEngineServiceImpl implements CategorizationEngineServ
     @Override
     public Ticket categorizeTicket(Long ticketId) {
         Ticket ticket = ticketRepository.findById(ticketId)
-                .orElseThrow(() -> new ResourceNotFoundException("Ticket not found"));
-
-        engine.categorize(ticket,
-                categoryRepository.findAll(),
-                ruleRepository.findAll(),
-                policyRepository.findAll(),
-                logRepository);
-
-        return ticketRepository.save(ticket);
+                .orElseThrow(() -> new ResourceNotFoundException("Ticket not found")); [cite: 81]
+        List<Category> categories = categoryRepository.findAll();
+        List<CategorizationRule> rules = ruleRepository.findAll();
+        List<UrgencyPolicy> policies = urgencyPolicyRepository.findAll();
+        engine.categorize(ticket, categories, rules, policies); 
+        Ticket savedTicket = ticketRepository.save(ticket);
+        return savedTicket;
     }
     
     @Override
