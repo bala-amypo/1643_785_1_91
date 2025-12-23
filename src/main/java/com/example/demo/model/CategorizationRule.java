@@ -38,7 +38,7 @@ public class CategorizationRule {
     }
 
     @PrePersist
-    public void onCreate() {
+    public void prePersist() {
         this.createdAt = LocalDateTime.now();
         if (this.priority == null) {
             this.priority = 1;
