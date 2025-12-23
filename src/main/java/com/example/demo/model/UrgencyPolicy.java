@@ -39,7 +39,7 @@ public class UrgencyPolicy {
     }
 
     @PrePersist
-    public void onCreate() {
+    public void prePersist() {
         this.createdAt = LocalDateTime.now();
     }
 
