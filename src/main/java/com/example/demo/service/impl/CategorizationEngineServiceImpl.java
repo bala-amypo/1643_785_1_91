@@ -47,7 +47,7 @@ public class CategorizationEngineServiceImpl implements CategorizationEngineServ
 
         return ticketRepository.save(ticket);
     }
-
+    @Override
     public CategorizationLogRepository getCategorizationLogRepository() {
         return logRepository;
     }
