@@ -20,16 +20,13 @@ public class OpenApiConfig {
     public OpenAPI customOpenAPI() {
 
         return new OpenAPI()
-            // API info
             .info(new Info()
                 .title("Maintenance Ticket Root-Cause Categorizer API")
                 .version("1.0")
                 .description("API for tickets, categories, rules, urgency policies, and categorization engine")
             )
-
-            // Server URL
             .servers(List.of(
-                new Server().url("https://9249.408procr.amypo.ai")
+                new Server().url("https://9168.pro604cr.amypo.ai/")
             ))
             .addSecurityItem(new SecurityRequirement().addList(SECURITY_SCHEME_NAME))
 
