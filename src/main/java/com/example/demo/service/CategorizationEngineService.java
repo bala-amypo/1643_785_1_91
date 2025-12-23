@@ -1,14 +1,11 @@
 package com.example.demo.service;
 
-import com.example.demo.model.Ticket;
 import com.example.demo.model.CategorizationLog;
-import com.example.demo.repository.CategorizationLogRepository;
+import com.example.demo.model.Ticket;
+import java.util.List;
 
 public interface CategorizationEngineService {
     Ticket categorizeTicket(Long ticketId);
-
-    // Return repository, not List
-    CategorizationLogRepository getCategorizationLogRepository();
-
+    List<CategorizationLog> getLogsForTicket(Long ticketId);
     CategorizationLog getLog(Long id);
 }

@@ -7,8 +7,6 @@ import com.example.demo.service.CategorizationEngineService;
 import com.example.demo.util.TicketCategorizationEngine;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class CategorizationEngineServiceImpl implements CategorizationEngineService {
 
@@ -40,19 +38,24 @@ public class CategorizationEngineServiceImpl implements CategorizationEngineServ
         Ticket ticket = ticketRepository.findById(ticketId)
                 .orElseThrow(() -> new ResourceNotFoundException("Ticket not found"));
 
-        List<Category> categories = categoryRepository.findAll();
-        List<CategorizationRule> rules = ruleRepository.findAll();
-        List<UrgencyPolicy> policies = policyRepository.findAll();
-
-        engine.categorize(ticket, categories, rules, policies, logRepository);
+        engine.categorize(ticket,
+                categoryRepository.findAll(),
+                ruleRepository.findAll(),
+                policyRepository.findAll(),
+                logRepository);
 
         return ticketRepository.save(ticket);
     }
 
     @Override
-        public List<CategorizationLog> getLogsForTicket(Long ticketId) {
-            return logRepository.findByTicket_Id(ticketId);
-        }
+    public CategorizationLogRepository getCategorizationLogRepository() {
+        return logRepository;
+    }
+    @Override
+    public List<CategorizationLog> getLogsForTicket(Long ticketId) {
+        return logRepository.findByTicket_Id(ticketId);
+    }
+
 
     @Override
     public CategorizationLog getLog(Long id) {
