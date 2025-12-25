@@ -35,13 +35,15 @@ public class Category {
     }
 
     public void addUrgencyPolicy(UrgencyPolicy policy) {
-    if (this.urgencyPolicies == null) {
-        this.urgencyPolicies = new java.util.HashSet<>();
-    }
-    if (this.urgencyPolicies.add(policy)) {
-        if (policy.getCategories() != null && !policy.getCategories().contains(this)) {
+        if (this.urgencyPolicies == null) {
+            this.urgencyPolicies = new java.util.HashSet<>();
+        }
+        
+        if (this.urgencyPolicies.add(policy)) {
+            if (policy.getCategories() == null) {
+                policy.setCategories(new java.util.HashSet<>());
+            }
             policy.getCategories().add(this);
         }
     }
-}
 }
