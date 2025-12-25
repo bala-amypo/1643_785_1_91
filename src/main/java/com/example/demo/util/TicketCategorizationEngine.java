@@ -1,5 +1,6 @@
 package com.example.demo.util;
 
+import org.springframework.stereotype.Component;
 import com.example.demo.model.*;
 import java.util.List;
 import java.util.Optional;
