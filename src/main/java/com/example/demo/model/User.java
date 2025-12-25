@@ -17,4 +17,11 @@ public class User {
     private String password;
 
     private String role;
+
+    public void addTicket(Ticket ticket) {
+        this.tickets.add(ticket);
+        if (ticket.getUser() != this) {
+            ticket.setUser(this); 
+        }
+    }
 }

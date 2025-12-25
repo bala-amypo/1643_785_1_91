@@ -28,4 +28,10 @@ public class Ticket {
     public void prePersist() {
         this.createdAt = LocalDateTime.now();
     }
+    public void setUser(User user) {
+    this.user = user;
+        if (user != null && !user.getTickets().contains(this)) {
+            user.getTickets().add(this);
+        }
+    }
 }
