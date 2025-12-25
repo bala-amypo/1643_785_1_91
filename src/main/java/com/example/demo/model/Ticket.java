@@ -11,25 +11,20 @@ public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String title;
-
-    @Column(length = 1000)
     private String description;
-
     private String urgencyLevel;
-    private LocalDateTime createdAt;
+    
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category assignedCategory;
 
-    @PrePersist
-    public void prePersist() {
-        this.createdAt = LocalDateTime.now();
-    }
     public void setUser(User user) {
-    this.user = user;
+        this.user = user;
         if (user != null && !user.getTickets().contains(this)) {
             user.getTickets().add(this);
         }
