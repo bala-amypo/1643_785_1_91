@@ -11,7 +11,7 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString(exclude = "urgencyPolicies")
+@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Category {
     @Id
@@ -37,9 +37,9 @@ public class Category {
     }
 
     public void addUrgencyPolicy(UrgencyPolicy policy) {
-        if (this.urgencyPolicies == null) {
-            this.urgencyPolicies = new java.util.HashSet<>();
-        }
         this.urgencyPolicies.add(policy);
+        if (!policy.getCategories().contains(this)) {
+            policy.getCategories().add(this);
+        }
     }
 }
