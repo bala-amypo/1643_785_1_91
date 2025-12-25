@@ -3,7 +3,6 @@ package com.example.demo.controller;
 import com.example.demo.model.CategorizationRule;
 import com.example.demo.service.CategorizationRuleService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,22 +17,29 @@ public class CategorizationRuleController {
         this.ruleService = ruleService;
     }
 
-    @PreAuthorize("permitAll()")
-    @PostMapping("/{categoryId}")
-    public ResponseEntity<CategorizationRule> create(
-            @PathVariable Long categoryId,
-            @RequestBody CategorizationRule rule) {
-        return ResponseEntity.ok(ruleService.createRule(categoryId, rule));
-    }
-
-    @GetMapping("/category/{categoryId}")
-    public ResponseEntity<List<CategorizationRule>> getByCategory(
-            @PathVariable Long categoryId) {
-        return ResponseEntity.ok(ruleService.getRulesByCategory(categoryId));
+    @PostMapping
+    public ResponseEntity<CategorizationRule> createRule(@RequestBody CategorizationRule rule) {
+        return ResponseEntity.ok(ruleService.createRule(rule));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CategorizationRule> getById(@PathVariable Long id) {
+    public ResponseEntity<CategorizationRule> getRule(@PathVariable Long id) {
         return ResponseEntity.ok(ruleService.getRule(id));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<CategorizationRule>> getAllRules() {
+        return ResponseEntity.ok(ruleService.getAllRules());
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<CategorizationRule>> searchByKeyword(@RequestParam String keyword) {
+        return ResponseEntity.ok(ruleService.searchByKeyword(keyword));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteRule(@PathVariable Long id) {
+        ruleService.deleteRule(id);
+        return ResponseEntity.noContent().build();
     }
 }
