@@ -13,7 +13,7 @@ import java.util.function.Function;
 
 @Component
 public class JwtUtil {
-    private String secret = "maintenance_root_cause_secret_key_2025_safe_and_long";
+    private String secret = "my-super-secret-key-which-is-at-least-32-characters-long";
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
@@ -30,7 +30,7 @@ public class JwtUtil {
                 .setClaims(claims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10)) // 10 hours
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24))
                 .signWith(SignatureAlgorithm.HS256, secret)
                 .compact();
     }
