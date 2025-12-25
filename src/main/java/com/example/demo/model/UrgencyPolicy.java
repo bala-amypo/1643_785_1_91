@@ -32,16 +32,18 @@ public class UrgencyPolicy {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof UrgencyPolicy)) return false;
-        UrgencyPolicy that = (UrgencyPolicy) o;
-        return java.util.Objects.equals(policyName, that.policyName) && 
-               java.util.Objects.equals(keyword, that.keyword);
-    }
+public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof UrgencyPolicy)) return false;
+    UrgencyPolicy that = (UrgencyPolicy) o;
+    // We use policyName and keyword because the test sets these 
+    // before adding the objects to the Category Set.
+    return java.util.Objects.equals(policyName, that.policyName) && 
+           java.util.Objects.equals(keyword, that.keyword);
+}
 
-    @Override
-    public int hashCode() {
-        return java.util.Objects.hash(policyName, keyword);
-    }
+@Override
+public int hashCode() {
+    return java.util.Objects.hash(policyName, keyword);
+}
 }
