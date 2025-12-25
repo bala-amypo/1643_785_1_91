@@ -5,17 +5,20 @@ import lombok.*;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Objects;
 
 @Entity
 @Table(name = "urgency_policies")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class UrgencyPolicy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String policyName; 
+
+    private String policyName;
     private String keyword;
     private String urgencyOverride;
     private LocalDateTime createdAt;
@@ -26,5 +29,19 @@ public class UrgencyPolicy {
     @PrePersist
     public void prePersist() {
         this.createdAt = LocalDateTime.now();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof UrgencyPolicy)) return false;
+        UrgencyPolicy that = (UrgencyPolicy) o;
+        return Objects.equals(policyName, that.policyName) && 
+               Objects.equals(keyword, that.keyword);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(policyName, keyword);
     }
 }

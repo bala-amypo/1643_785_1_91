@@ -12,11 +12,9 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
     private Long id;
 
     private String categoryName;
@@ -38,7 +36,7 @@ public class Category {
 
     public void addUrgencyPolicy(UrgencyPolicy policy) {
         this.urgencyPolicies.add(policy);
-        if (!policy.getCategories().contains(this)) {
+        if (policy.getCategories() != null && !policy.getCategories().contains(this)) {
             policy.getCategories().add(this);
         }
     }
