@@ -1,69 +1,29 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "urgency_policies")
+@Data
 public class UrgencyPolicy {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String policyName;
-
-    @Column(nullable = false)
     private String keyword;
-
-    @Column(nullable = false)
     private String urgencyOverride;
-
-    @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    @ManyToMany
-    @JoinTable(
-        name = "urgency_policy_categories",
-        joinColumns = @JoinColumn(name = "urgency_policy_id"),
-        inverseJoinColumns = @JoinColumn(name = "category_id")
-    )
+    @ManyToMany(mappedBy = "urgencyPolicies")
     private Set<Category> categories = new HashSet<>();
 
-    public UrgencyPolicy() {}
-
-    public UrgencyPolicy(String keyword, String urgencyOverride) {
-        this.keyword = keyword;
-        this.urgencyOverride = urgencyOverride;
-    }
-
     @PrePersist
-    public void prePersist() {
+    protected void prePersist() {
         this.createdAt = LocalDateTime.now();
-    }
-
-
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public String getPolicyName() { return policyName; }
-    public void setPolicyName(String policyName) { this.policyName = policyName; }
-
-    public String getKeyword() { return keyword; }
-    public void setKeyword(String keyword) { this.keyword = keyword; }
-
-    public String getUrgencyOverride() { return urgencyOverride; }
-    public void setUrgencyOverride(String urgencyOverride) { this.urgencyOverride = urgencyOverride; }
-
-    public LocalDateTime getCreatedAt() { return createdAt; }
-
-    public Set<Category> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(Set<Category> categories) {
-        this.categories = categories;
     }
 }
