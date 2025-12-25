@@ -27,7 +27,7 @@ public class Category {
     private Set<UrgencyPolicy> urgencyPolicies = new HashSet<>();
 
     @PrePersist
-    protected void prePersist() {
+    public void prePersist() {
         this.createdAt = LocalDateTime.now();
     }
 }

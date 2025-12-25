@@ -23,7 +23,7 @@ public class UrgencyPolicy {
     private Set<Category> categories = new HashSet<>();
 
     @PrePersist
-    protected void prePersist() {
+    public void prePersist() {
         this.createdAt = LocalDateTime.now();
     }
 }

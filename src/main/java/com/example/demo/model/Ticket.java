@@ -25,7 +25,7 @@ public class Ticket {
     private Category assignedCategory;
 
     @PrePersist
-    protected void prePersist() {
+    public void prePersist() {
         this.createdAt = LocalDateTime.now();
     }
 }
