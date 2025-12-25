@@ -29,4 +29,8 @@ public class Ticket {
             user.getTickets().add(this);
         }
     }
+    @PrePersist
+    public void prePersist() {
+        this.createdAt = LocalDateTime.now();
+    }
 }
