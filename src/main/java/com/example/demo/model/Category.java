@@ -8,7 +8,6 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "categories")
-@Data
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,13 +33,8 @@ public class Category {
         this.createdAt = LocalDateTime.now();
     }
 
-    // --- CRITICAL FOR testAddMultiplePoliciesToCategory ---
     public void addUrgencyPolicy(UrgencyPolicy policy) {
         this.urgencyPolicies.add(policy);
-        // Synchronize the inverse side if the relationship is bidirectional in UrgencyPolicy
-        // if (!policy.getCategories().contains(this)) {
-        //     policy.getCategories().add(this);
-        // }
     }
 
     public Long getId() {
