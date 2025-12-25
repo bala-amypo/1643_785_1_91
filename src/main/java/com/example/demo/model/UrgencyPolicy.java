@@ -36,12 +36,11 @@ public class UrgencyPolicy {
         if (this == o) return true;
         if (!(o instanceof UrgencyPolicy)) return false;
         UrgencyPolicy that = (UrgencyPolicy) o;
-        return java.util.Objects.equals(policyName, that.policyName) && 
-            java.util.Objects.equals(keyword, that.keyword);
+        return java.util.Objects.equals(this.policyName, that.policyName);
     }
 
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(policyName, keyword);
+        return java.util.Objects.hash(this.policyName);
     }
 }
