@@ -8,17 +8,14 @@ import java.util.Set;
 
 @Entity
 @Table(name = "urgency_policies")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class UrgencyPolicy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
     private Long id;
-
+    private String policyName; 
     private String keyword;
     private String urgencyOverride;
     private LocalDateTime createdAt;
@@ -29,12 +26,5 @@ public class UrgencyPolicy {
     @PrePersist
     public void prePersist() {
         this.createdAt = LocalDateTime.now();
-    }
-
-    public void addCategory(Category category) {
-        this.categories.add(category);
-        if (!category.getUrgencyPolicies().contains(this)) {
-            category.getUrgencyPolicies().add(this);
-        }
     }
 }
