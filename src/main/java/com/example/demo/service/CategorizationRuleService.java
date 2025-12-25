@@ -1,13 +1,12 @@
 package com.example.demo.service;
 
-import com.example.demo.model.CategorizationRule;
+import com.example.demo.model.*;
 import java.util.List;
 
 public interface CategorizationRuleService {
-
-    CategorizationRule createRule(Long categoryId, CategorizationRule rule);
-
-    List<CategorizationRule> getRulesByCategory(Long categoryId);
-
+    CategorizationRule createRule(CategorizationRule rule);
     CategorizationRule getRule(Long id);
+    List<CategorizationRule> getAllRules();
+    List<CategorizationRule> searchByKeyword(String keyword);
+    void deleteRule(Long id);
 }
