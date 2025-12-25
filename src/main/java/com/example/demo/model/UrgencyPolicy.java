@@ -37,7 +37,7 @@ public class UrgencyPolicy {
         if (!(o instanceof UrgencyPolicy)) return false;
         UrgencyPolicy that = (UrgencyPolicy) o;
         return Objects.equals(policyName, that.policyName) && 
-               Objects.equals(keyword, that.keyword);
+            Objects.equals(keyword, that.keyword);
     }
 
     @Override

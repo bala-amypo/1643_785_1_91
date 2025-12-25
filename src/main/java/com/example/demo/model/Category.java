@@ -35,7 +35,11 @@ public class Category {
     }
 
     public void addUrgencyPolicy(UrgencyPolicy policy) {
+        if (this.urgencyPolicies == null) {
+            this.urgencyPolicies = new HashSet<>();
+        }
         this.urgencyPolicies.add(policy);
+        
         if (policy.getCategories() != null && !policy.getCategories().contains(this)) {
             policy.getCategories().add(this);
         }
