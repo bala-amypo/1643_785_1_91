@@ -4,6 +4,7 @@ import com.example.demo.model.*;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class TicketCategorizationEngine {
 
     public void categorize(Ticket ticket, 
